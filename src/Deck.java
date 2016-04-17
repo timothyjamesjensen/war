@@ -1,7 +1,8 @@
 public class Deck {
-    private Card[] deck;
+    private final Card[] deck;
 
     Deck() {
         deck = new Card[52];
     }
+
 }
