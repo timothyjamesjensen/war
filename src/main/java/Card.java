@@ -5,5 +5,4 @@ public class Card {
     Card(String suit, String rank) {
         this.suit = suit; this.rank = rank;
     }
-
 }

@@ -1,8 +1,10 @@
-public class Deck {
-    private final Card[] deck;
+public interface Deck {
+    /* Create the deck of cards */
+    public void create( int numberOfSuits, int numberOfRanks );
 
-    Deck() {
-        deck = new Card[52];
-    }
+    /* Shuffle the deck */
+    public void shuffle();
 
+    /* deal a card from the deck */
+    public Card deal();
 }
