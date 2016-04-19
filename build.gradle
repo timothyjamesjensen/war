@@ -1,4 +1,13 @@
+repositories {
+    mavenCentral()
+}
+
 apply plugin: 'java'
+
+
+dependencies {
+    testCompile 'junit:junit:4.10'
+}
 
 jar {
     manifest {
