@@ -5,4 +5,12 @@ public class Card {
     Card(String suit, String rank) {
         this.suit = suit; this.rank = rank;
     }
+
+    public  String getSuit() {
+        return "";
+    }
+
+    public String getRank() {
+        return "";
+    }
 }
