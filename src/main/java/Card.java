@@ -7,10 +7,10 @@ public class Card {
     }
 
     public  String getSuit() {
-        return "";
+        return suit;
     }
 
     public String getRank() {
-        return "";
+        return rank;
     }
 }
