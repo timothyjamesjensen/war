@@ -1,3 +1,4 @@
+import game.Game;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
@@ -9,6 +10,9 @@ public class War {
 
     public static void play( int numberOfSuits, int numberOfRanks, int numberOfPlayers ){
         System.out.println("Alright! Its a " + numberOfPlayers + " player game of War!\n\n");
+
+        Game war = new Game();
+        war.play(numberOfSuits, numberOfRanks, numberOfPlayers);
     }
 
     public static void welcome() {
