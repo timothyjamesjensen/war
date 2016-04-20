@@ -17,11 +17,19 @@ public class Game {
         Deck cards = new CardDeck();
         cards.create(numberOfSuits, numberOfRanks);
         cards.shuffle();
-        dealCardsToPlayers();
+        dealCardsToPlayers(cards, playersCount);
     }
 
-    public void dealCardsToPlayers() {
+    public void dealCardsToPlayers(Deck cards, int playersCount) {
+        while (cards.getDeck().size() > 0) {
+            for (Player player : players) {
+                player.addCardsToHand(cards.deal());
+            }
+        }
+    }
 
+    public ArrayList<Player> getPlayers() {
+        return players;
     }
 
     private void initPlayers(int playersCount) {
