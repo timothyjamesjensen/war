@@ -4,8 +4,10 @@ import card.Card;
 import card.Rank;
 import card.Suit;
 import deck.CardDeck;
+import deck.Deck;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class CardDeckTest {
@@ -18,5 +20,26 @@ public class CardDeckTest {
             assertTrue(card.getRank() instanceof Rank);
             assertTrue(card.getSuit() instanceof Suit);
         }
+    }
+
+    @Test
+    public void DealShouldReturnCard() {
+        Deck cards = new CardDeck();
+        cards.create(4,13);
+        // create single card that can be used for each assert
+        Card newCard = cards.deal();
+        assertTrue(newCard instanceof Card);
+        assertTrue(newCard.getRank() instanceof Rank);
+        assertTrue(newCard.getSuit() instanceof Suit);
+    }
+
+    @Test
+    public void DealShouldReduceDeckSizeByOne() {
+        CardDeck cards = new CardDeck();
+        cards.create(4,13);
+        int originalDeckSize = cards.getDeck().size();
+        cards.deal();
+        assertEquals("Deck size should be one less than originalDeckSize",
+                originalDeckSize-1, cards.getDeck().size());
     }
 }

@@ -33,10 +33,10 @@ public class CardDeck implements Deck {
     }
 
     public Card deal() {
-        return new Card(HEARTS, ACE);
+        return cards.remove(0);
     }
 
-    // This getter is for testing purposes
+    // This getter is for testing purposes only
     public ArrayList<Card> getDeck() {
         return cards;
     }
