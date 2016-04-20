@@ -12,11 +12,13 @@ public class Game {
     // Using a hashmap here for easy deletion of players when they lose. PlayerID is the key
     private HashMap<String, Player> players;
     private ArrayList<Card> cardsOnTable;
+    private ArrayList<Player> highCardHolders;
     private final boolean winner;
 
     public Game() {
         players = new HashMap<>();
         cardsOnTable = new ArrayList<>();
+        highCardHolders = new ArrayList<>();
         this.winner = false;
     }
 
@@ -39,8 +41,8 @@ public class Game {
     public void battle() {
         // all players play cards
         playCards();
-        // check for high card
-        compareCards(cardsOnTable);
+        // check for high card and build list of players who have that card
+        buildWinnersList(compareCards(cardsOnTable));
         // build list of players who have high card
         //if list is greater than 1, battle
         //else winner gets all cards
@@ -62,6 +64,14 @@ public class Game {
         return highestValue;
     }
 
+    public void buildWinnersList(int highCard) {
+        for (Map.Entry<String, Player> player : players.entrySet()) {
+            if (player.getValue().getLastPlayed().getRank().getValue() == highCard) {
+                highCardHolders.add(player.getValue());
+            }
+        }
+    }
+
     public void dealCardsToPlayers(Deck cards, int playersCount) {
         // If there are 5 players, each player will get 10 cards and two will be left in the deck
         while (cards.getDeck().size() > 0  && (cards.getDeck().size() - playersCount) >= 0) {
@@ -77,6 +87,10 @@ public class Game {
 
     public ArrayList<Card> getCardsOnTable() {
         return cardsOnTable;
+    }
+
+    public ArrayList<Player> getHighCardHolders() {
+        return  highCardHolders;
     }
 
     private void initPlayers(int playersCount) {
