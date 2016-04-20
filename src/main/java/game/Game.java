@@ -29,11 +29,15 @@ public class Game {
     public void gameLoop() {
         // this will loop until someone becomes a winner and winner is set to true
         while (!winner) {
-            // all players play cards
-            // check for high card
-            // case 1: player has highest card and gets all cards
-            // case 2: multiple players have highest card; go to war!
+            battle();
         }
+    }
+
+    public void battle() {
+        // all players play cards
+        // check for high card
+        // case 1: player has highest card and gets all cards
+        // case 2: multiple players have highest card; go to war!
     }
 
     public void dealCardsToPlayers(Deck cards, int playersCount) {
