@@ -7,6 +7,7 @@ import card.Rank;
 import card.Suit;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class CardDeck implements Deck {
 
@@ -29,7 +30,7 @@ public class CardDeck implements Deck {
     }
 
     public void shuffle() {
-
+        Collections.shuffle(cards);
     }
 
     public Card deal() {
