@@ -16,9 +16,9 @@ public class CardDeckTest {
         CardDeck cards = new CardDeck();
         cards.create(4, 13);
         for (Card card: cards.getDeck()) {
-            assertTrue(card instanceof Card);
-            assertTrue(card.getRank() instanceof Rank);
-            assertTrue(card.getSuit() instanceof Suit);
+            assertTrue(card instanceof Card
+                && card.getRank() instanceof Rank
+                && card.getSuit() instanceof Suit);
         }
     }
 
@@ -28,9 +28,9 @@ public class CardDeckTest {
         cards.create(4,13);
         // create single card that can be used for each assert
         Card newCard = cards.deal();
-        assertTrue(newCard instanceof Card);
-        assertTrue(newCard.getRank() instanceof Rank);
-        assertTrue(newCard.getSuit() instanceof Suit);
+        assertTrue(newCard instanceof Card
+                && newCard.getRank() instanceof Rank
+                && newCard.getSuit() instanceof Suit);
     }
 
     @Test
