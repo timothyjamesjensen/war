@@ -1,5 +1,6 @@
 package game;
 
+import card.Card;
 import deck.CardDeck;
 import deck.Deck;
 import player.Player;
@@ -10,10 +11,12 @@ import java.util.Map;
 public class Game {
     // Using a hashmap here for easy deletion of players when they lose. PlayerID is the key
     private HashMap<String, Player> players;
+    private ArrayList<Card> cardsOnTable;
     private final boolean winner;
 
     public Game() {
         players = new HashMap<>();
+        cardsOnTable = new ArrayList<>();
         this.winner = false;
     }
 
@@ -35,9 +38,28 @@ public class Game {
 
     public void battle() {
         // all players play cards
+        playCards();
         // check for high card
-        // case 1: player has highest card and gets all cards
-        // case 2: multiple players have highest card; go to war!
+        compareCards(cardsOnTable);
+        // build list of players who have high card
+        //if list is greater than 1, battle
+        //else winner gets all cards
+    }
+
+    public void playCards() {
+        for (Map.Entry<String, Player> player : players.entrySet()) {
+            cardsOnTable.add(player.getValue().playCard());
+        }
+    }
+
+    public int compareCards(ArrayList<Card> cardsToCompare) {
+        int highestValue = 0;
+        for (Card card : cardsToCompare) {
+            if (card.getRank().getValue() > highestValue) {
+                highestValue = card.getRank().getValue();
+            }
+        }
+        return highestValue;
     }
 
     public void dealCardsToPlayers(Deck cards, int playersCount) {
@@ -51,6 +73,10 @@ public class Game {
 
     public HashMap<String, Player> getPlayers() {
         return players;
+    }
+
+    public ArrayList<Card> getCardsOnTable() {
+        return cardsOnTable;
     }
 
     private void initPlayers(int playersCount) {
