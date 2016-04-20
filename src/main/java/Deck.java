@@ -1,4 +1,4 @@
-import Card.Card;
+import card.Card;
 
 public interface Deck {
     /* Create the deck of cards */

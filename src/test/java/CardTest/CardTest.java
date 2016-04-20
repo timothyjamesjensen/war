@@ -1,6 +1,6 @@
-package CardTest;
+package cardtest;
 
-import Card.*;
+import card.*;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
