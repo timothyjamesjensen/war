@@ -21,7 +21,7 @@ public class Game {
     }
 
     public void dealCardsToPlayers(Deck cards, int playersCount) {
-        while (cards.getDeck().size() > 0) {
+        while (cards.getDeck().size() > 0  && (cards.getDeck().size() - playersCount) >= 0) {
             for (Player player : players) {
                 player.addCardsToHand(cards.deal());
             }
