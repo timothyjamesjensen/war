@@ -1,8 +1,10 @@
-import card.Card;
+package deck;
+
+import card.*;
 
 public interface Deck {
     /* Create the deck of cards */
-    public void create( int numberOfSuits, int numberOfRanks );
+    public void create(int numberOfSuits, int numberOfRanks);
 
     /* Shuffle the deck */
     public void shuffle();
