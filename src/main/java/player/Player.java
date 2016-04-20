@@ -29,4 +29,8 @@ public class Player {
     public void addCardsToHand(ArrayList<Card> cards) {
         hand.addAll(cards);
     }
+
+    public Card playCard() {
+        return hand.remove(0);
+    }
 }
