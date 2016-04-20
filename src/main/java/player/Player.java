@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Player {
     private final String playerID;
     private ArrayList<Card> hand;
+    private Card lastPlayed;
 
     public Player(String playerID) {
         this.playerID = playerID;
@@ -14,6 +15,10 @@ public class Player {
 
     public String getPlayerID() {
         return playerID;
+    }
+
+    public Card getLastPlayed() {
+        return lastPlayed;
     }
 
     public ArrayList<Card> getHand() {
@@ -29,6 +34,7 @@ public class Player {
     }
 
     public Card playCard() {
-        return hand.remove(0);
+        lastPlayed = hand.remove(0);
+        return lastPlayed;
     }
 }

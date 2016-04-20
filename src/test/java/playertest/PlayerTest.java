@@ -65,4 +65,15 @@ public class PlayerTest {
         player1.playCard();
         assertEquals("Hand Size should equal 1", 1, player1.getHand().size());
     }
+
+    @Test
+    public void LastPlayedShouldEqualPlayCard() {
+        Player player1 = new Player("player1");
+        Card newCard1 = new Card(SPADES, TWO);
+        Card newCard2 = new Card(SPADES, THREE);
+        player1.addCardsToHand(newCard1);
+        player1.addCardsToHand(newCard2);
+        Card playedCard = player1.playCard();
+        assertEquals("Cards should be equal", playedCard, player1.getLastPlayed());
+    }
 }
