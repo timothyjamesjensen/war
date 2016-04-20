@@ -1,12 +1,9 @@
 package playertest;
 
 import card.Card;
-
 import org.junit.Test;
 import player.Player;
-
 import java.util.ArrayList;
-
 import static card.Rank.*;
 import static card.Suit.*;
 import static org.junit.Assert.assertEquals;

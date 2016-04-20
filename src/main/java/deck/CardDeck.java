@@ -5,7 +5,6 @@ import static card.Rank.*;
 import static card.Suit.*;;
 import card.Rank;
 import card.Suit;
-
 import java.util.ArrayList;
 import java.util.Collections;
 

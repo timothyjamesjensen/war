@@ -1,7 +1,6 @@
 package cardtest;
 
 import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import card.*;
 import static card.Rank.*;
