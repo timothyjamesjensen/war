@@ -1,3 +1,5 @@
+import Card.Card;
+
 public interface Deck {
     /* Create the deck of cards */
     public void create( int numberOfSuits, int numberOfRanks );
