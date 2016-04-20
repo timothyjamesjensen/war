@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Game {
+    // Using a hashmap here for easy deletion of players when they lose. PlayerID is the key
     private HashMap<String, Player> players;
     private final boolean winner;
 
@@ -50,6 +51,7 @@ public class Game {
 
     private void initPlayers(int playersCount) {
         for (int i=0; i<playersCount; i++) {
+            // NOTE: hashmap key is same as playerID. this makes it easy to delete players
             players.put("player" + i, new Player("player" + i));
         }
     }
