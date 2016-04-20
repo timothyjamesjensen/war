@@ -6,12 +6,15 @@ import static card.Suit.*;;
 import card.Rank;
 import card.Suit;
 
+import java.util.ArrayList;
+
 public class CardDeck implements Deck {
 
-    private int numberOfSuits;
-    private int getNumberOfRanks;
     private final Rank[] ranks;
     private final Suit[] suits;
+    private ArrayList<Card> cards;
+    private int numberOfSuits;
+    private int numberOfRanks;
 
     public CardDeck() {
         ranks = new Rank[]{TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,NINE,TEN,JACK,QUEEN,KING,ACE};
@@ -20,7 +23,9 @@ public class CardDeck implements Deck {
 
     public void create(int numberOfSuits, int numberOfRanks) {
         this.numberOfSuits = numberOfSuits;
-        this.getNumberOfRanks = numberOfRanks;
+        this.numberOfRanks = numberOfRanks;
+        cards = new ArrayList<>();
+        populateDeck(cards);
     }
 
     public void shuffle() {
@@ -29,5 +34,19 @@ public class CardDeck implements Deck {
 
     public Card deal() {
         return new Card(HEARTS, ACE);
+    }
+
+    // This getter is for testing purposes
+    public ArrayList<Card> getDeck() {
+        return cards;
+    }
+
+    private void populateDeck(ArrayList cards) {
+        // Temporary solution. May need to change this
+        for (Suit suit : Suit.values()) {
+            for (Rank rank : Rank.values()) {
+                cards.add(new Card(suit, rank));
+            }
+        }
     }
 }
