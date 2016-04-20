@@ -1,10 +1,9 @@
 package cardtest;
 
-import card.*;
-import static card.Rank.*;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
-
+import card.*;
+import static card.Rank.*;
 
 public class CardTest {
     Card card = new Card("Hearts", QUEEN);
