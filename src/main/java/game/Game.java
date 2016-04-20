@@ -39,13 +39,23 @@ public class Game {
     }
 
     public void battle() {
+        //check if any player has zero cards, if they do, they lose and are kicked from game
+        //every time a player loses, check if there is a winner, if there is, return;
         // all players play cards
         playCards();
         // check for high card and build list of players who have that card
         buildWinnersList(compareCards(cardsOnTable));
         // build list of players who have high card
-        //if list is greater than 1, battle
-        //else winner gets all cards
+        if (highCardHolders.size() > 1) {
+            //goToWar
+            //when at war, make sure to check if players have enough cards to war
+            //if a player doesn't have enough cards, they lose
+        } else {
+            // give all the cards to winner and clear lists
+            highCardHolders.get(0).addCardsToHand(cardsOnTable);
+            cardsOnTable.clear();
+            highCardHolders.clear();
+        }
     }
 
     public void playCards() {
