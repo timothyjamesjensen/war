@@ -41,7 +41,7 @@ public class Game {
     public void gameLoop() {
         // This will loop until someone becomes a winner and winner is set to true
         while (!winner) {
-            userInput();
+            //userInput();
             battle(players, highCardHolders, cardsOnTable, warCards);
         }
     }
@@ -101,12 +101,17 @@ public class Game {
     }
 
     public void checkCardCount(int cardsNeededToContinue) {
+        ArrayList<String> removeList = new ArrayList<>();
         for (Player player: players) {
             // If players don't have enough cards to continue, they are out of the game
             if (player.getHand().size() < cardsNeededToContinue) {
                 System.err.println(player.playCard() + " does not have enough cards to continue. They are" +
                         " out of the game and will forfeit all their cards");
+                removeList.add(player.getPlayerID());
             }
+        }
+        for(String playerId: removeList) {
+            removePlayer(playerId, players);
         }
     }
 
