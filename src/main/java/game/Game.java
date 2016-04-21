@@ -64,11 +64,12 @@ public class Game {
             cardsOnTable.addAll(warCards);
             warCards.clear();
             goToWar(highCardHolders, new ArrayList<Player>(), cardsOnTable, warCards);
-
+            gc.roundWinnerMessage(highCardHolders.get(0), cardsOnTable.size());
         } else {
             // Give all the cards to winner and clear lists
             cardsOnTable.addAll(warCards);
             highCardHolders.get(0).addCardsToHand(cardsOnTable);
+            gc.roundWinnerMessage(highCardHolders.get(0), cardsOnTable.size());
         }
         warCards.clear();
         cardsOnTable.clear();

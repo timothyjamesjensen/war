@@ -17,7 +17,7 @@ public class GameCommunicator {
     }
 
     public void userInput() {
-        System.out.println("Do you want to keep playing? Press enter!");
+        System.out.println("Press enter to play the next round!");
         scanner.nextLine();
     }
 
@@ -46,6 +46,10 @@ public class GameCommunicator {
             System.out.print(playerList.get(i).getPlayerID());
         }
         System.out.print(" have the same high card!!");
-        System.out.print(" ITS WAR!");
+        System.out.print(" ITS WAR!\n");
+    }
+
+    public void roundWinnerMessage(Player winner, int cardsWon) {
+        System.out.print(winner.getPlayerID() + " has won the round and gets " + cardsWon + " cards!!\n");
     }
 }
