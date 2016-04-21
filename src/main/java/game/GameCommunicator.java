@@ -28,4 +28,13 @@ public class GameCommunicator {
         }
         System.out.print("\n");
     }
+
+    public void winnerMessage() {
+        System.out.println("We Have a winner!!");
+    }
+
+    public void loserMessage(String playerID) {
+        System.out.println(playerID + " does not have enough cards to continue. They are" +
+                " out of the game and will forfeit all their cards");
+    }
 }

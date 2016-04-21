@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
-    // Using a hashmap here for easy deletion of players when they lose. PlayerID is the key
     private ArrayList<Player> players;
     private ArrayList<Card> cardsOnTable;
     private ArrayList<Card> warCards;
@@ -101,7 +100,7 @@ public class Game {
     public boolean weHaveAWinner() {
         if (players.size() == 1) {
             winner = true;
-            System.out.println("We have a winner!!");
+            gc.winnerMessage();
         }
         return winner;
     }
@@ -111,8 +110,7 @@ public class Game {
         for (Player player: players) {
             // If players don't have enough cards to continue, they are out of the game
             if (player.getHand().size() < cardsNeededToContinue) {
-                System.out.println(player.getPlayerID() + " does not have enough cards to continue. They are" +
-                        " out of the game and will forfeit all their cards");
+                gc.loserMessage(player.getPlayerID());
                 removeList.add(player.getPlayerID());
             }
         }
