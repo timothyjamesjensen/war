@@ -69,15 +69,12 @@ public class Game {
     }
 
     public void goToWar(ArrayList<Player> winners) {
-        // War Starts with each player putting down 3 cards
+        // War Starts with each player putting 3 cards in the card pool
         for (int i = 0; i<3; i++) {
-            for (Player player : highCardHolders) {
-                cardsOnTable.add(player.playCard());
-            }
+            playCards(winners, cardsOnTable);
         }
-        for (Player player : highCardHolders) {
-            warCards.add(player.playCard());
-        }
+        // Next each of the players
+        playCards(winners, warCards);
 
     }
 
