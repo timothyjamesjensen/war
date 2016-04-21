@@ -48,4 +48,9 @@ public class GameCommunicator {
     public void roundWinnerMessage(Player winner, int cardsWon) {
         System.out.print(winner.getPlayerID() + " won the round and got " + cardsWon + " cards!!\n\n");
     }
+
+    public void allLosers() {
+        System.out.println("Wow! it looks like NOBODY had enough cards to continue!" +
+                " The game is over and nobody wins");
+    }
 }

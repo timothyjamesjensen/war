@@ -99,6 +99,9 @@ public class Game {
             winner = true;
             gc.winnerMessage(players);
         }
+        if (players.size() == 0) {
+            gc.allLosers();
+        }
         return winner;
     }
 
