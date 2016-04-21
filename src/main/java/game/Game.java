@@ -32,7 +32,7 @@ public class Game {
         cards.create(numberOfSuits, numberOfRanks);
         cards.shuffle();
         dealCardsToPlayers(cards, playersCount);
-        gameLoop();
+        //gameLoop();
     }
 
     public void gameLoop() {
@@ -46,7 +46,7 @@ public class Game {
                        ArrayList<Card> cardsOnTable, ArrayList<Card> warCards) {
         // Make sure players have at least 1 card, if not they lose
         checkCardCount(1);
-        //every time a player loses, check if there is a winner, if there is, return;
+        // Every time a player loses, check if there is a winner, if there is, return;
         if (weHaveAWinner()) {
             return;
         }
