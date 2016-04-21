@@ -13,7 +13,7 @@ public class Game {
     private HashMap<String, Player> players;
     private ArrayList<Card> cardsOnTable;
     private ArrayList<Player> highCardHolders;
-    private final boolean winner;
+    private boolean winner;
 
     public Game() {
         players = new HashMap<>();
