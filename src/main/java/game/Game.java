@@ -87,11 +87,21 @@ public class Game {
 
     public void checkCardCount(int cardsNeededToContinue) {
         for (Player player: players) {
+            // If players don't have enough cards to continue, they are out of the game
             if (player.getHand().size() < cardsNeededToContinue) {
                 System.err.println(player.playCard() + " does not have enough cards to continue. They are" +
                         " out of the game and will forfeit all their cards");
             }
         }
+    }
+
+    public Player removePlayer(String playerID, ArrayList<Player> players) {
+        for (int i = 0; i < players.size(); i++) {
+            if (playerID.equals(players.get(i).getPlayerID())) {
+                return players.remove(i);
+            }
+        }
+        return null;
     }
 
     public int compareCards(ArrayList<Card> cardsToCompare) {

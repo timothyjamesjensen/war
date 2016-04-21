@@ -49,4 +49,12 @@ public class GameTest {
         cardsToCompare.add(new Card(HEARTS, ACE));
         assertEquals("Max value should be ACE", ACE.getValue(), war.compareCards(cardsToCompare));
     }
+
+    @Test
+    public void RemovePlayerShouldDecreasePlayerCountByOne() {
+        Game war = new Game();
+        war.play(4, 13, 4);
+        war.removePlayer("player1", war.getPlayers());
+        assertEquals("players size should equal 3", 3, war.getPlayers().size());
+    }
 }
