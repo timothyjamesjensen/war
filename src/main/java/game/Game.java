@@ -32,11 +32,11 @@ public class Game {
         cards.create(numberOfSuits, numberOfRanks);
         cards.shuffle();
         dealCardsToPlayers(cards, playersCount);
-       // gameLoop();
+        gameLoop();
     }
 
     public void gameLoop() {
-        // this will loop until someone becomes a winner and winner is set to true
+        // This will loop until someone becomes a winner and winner is set to true
         while (!winner) {
             battle(players, highCardHolders, cardsOnTable, warCards);
         }
@@ -54,16 +54,14 @@ public class Game {
         playCards(players, warCards);
         // Check for high card and build list of players who have that card
         buildWinnersList(players, highCardHolders, compareCards(cardsOnTable));
-        // build list of players who have high card
+        // If multiple card holders exist, go to war
         if (highCardHolders.size() > 1) {
-            //goToWar
-            //when at war, make sure to check if players have enough cards to war
-            //if a player doesn't have enough cards, they lose
             cardsOnTable.addAll(warCards);
             warCards.clear();
             goToWar(highCardHolders, new ArrayList<Player>(), cardsOnTable, warCards);
+
         } else {
-            // give all the cards to winner and clear lists
+            // Give all the cards to winner and clear lists
             cardsOnTable.addAll(warCards);
             highCardHolders.get(0).addCardsToHand(cardsOnTable);
             warCards.clear();
@@ -150,10 +148,6 @@ public class Game {
 
     public ArrayList<Card> getCardsOnTable() {
         return cardsOnTable;
-    }
-
-    public ArrayList<Player> getHighCardHolders() {
-        return highCardHolders;
     }
 
     private void initPlayers(int playersCount) {
