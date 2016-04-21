@@ -54,8 +54,10 @@ public class Game {
         if (weHaveAWinner()) {
             return;
         }
+        userInput();
         // All players play a single card
         playCards(players, warCards);
+        showCards(players);
         // Check for high card and build list of players who have that card
         buildWinnersList(players, highCardHolders, compareCards(warCards));
         // If multiple card holders exist, go to war
@@ -174,10 +176,11 @@ public class Game {
     }
 
     public void showCards(ArrayList<Player> playersList) {
-        System.out.println("Player Hands\n");
+        System.out.println("Played Cards\n");
         for (Player player: playersList) {
-            System.out.println(player.getPlayerID() + ": " + player.getLastPlayed().show());
+            System.out.println(player.getPlayerID() + ": " + player.getLastPlayed().show() + "");
         }
+        System.out.print("\n");
     }
 
     public ArrayList<Player> getPlayers() {
