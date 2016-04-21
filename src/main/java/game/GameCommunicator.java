@@ -11,11 +11,6 @@ public class GameCommunicator {
         scanner = new Scanner(System.in);
     }
 
-    public boolean keepPlaying() {
-        System.out.println("Do you want to keep playing? Press enter!");
-        return true;
-    }
-
     public void userInput() {
         System.out.println("Press enter to play the next round!");
         scanner.nextLine();

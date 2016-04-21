@@ -41,7 +41,6 @@ public class CardDeck implements Deck {
     }
 
     private void populateDeck(ArrayList cards) {
-        // Temporary solution. May need to change this
         for (int i=0; i<numberOfSuits; i++) {
             for (int j=0; j<numberOfRanks; j++) {
                 cards.add(new Card(suits[i], ranks[j]));

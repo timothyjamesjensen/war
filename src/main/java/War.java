@@ -14,6 +14,7 @@ public class War {
         System.out.println("Alright! Its a " + numberOfPlayers + " player game of War with a " +
                 (numberOfRanks * numberOfSuits) + " card deck!\n\n");
 
+        // This is where the game starts
         Game war = new Game();
         war.play(numberOfSuits, numberOfRanks, numberOfPlayers);
     }
@@ -43,7 +44,6 @@ public class War {
                 input = scanner.nextInt();
                 if (input < floor || input > ceiling) {
                     System.out.println("\nHey! I thought I said to enter a number between 2 and 5!\nTry again!");
-                    //scanner.next();
                 }
             } catch (InputMismatchException e) {
                 System.out.println("\nHey! I thought I said to enter a NUMBER between 2 and 5!\nTry again!");
