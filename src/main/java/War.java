@@ -27,7 +27,7 @@ public class War {
             System.out.println("\n\nThanks for playing!");
         } else {
             System.out.println("\nHey! I'm glad you decided to play a game!!" +
-                    "I need you a little bit of input from you and then" +
+                    "I need a little bit of input from you and then" +
                     " we can get started!\n");
 
             play(getValidIntegerInput(2,4,"number of card suits"), getValidIntegerInput(6,13,"number or card ranks"),
