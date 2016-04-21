@@ -38,15 +38,16 @@ public class Game {
     public void gameLoop() {
         // this will loop until someone becomes a winner and winner is set to true
         while (!winner) {
-            battle();
+            battle(players, highCardHolders, cardsOnTable, warCards);
         }
     }
 
-    public void battle() {
+    public void battle(ArrayList<Player> players, ArrayList<Player> highCardHolders,
+                       ArrayList<Card> cardsOnTable, ArrayList<Card> warCards) {
         //check if any player has zero cards, if they do, they lose and are kicked from game
         //every time a player loses, check if there is a winner, if there is, return;
         // all players play cards
-        playCards(players, cardsOnTable);
+        playCards(players, warCards);
         // check for high card and build list of players who have that card
         buildWinnersList(players, highCardHolders, compareCards(cardsOnTable));
         // build list of players who have high card
@@ -54,9 +55,14 @@ public class Game {
             //goToWar
             //when at war, make sure to check if players have enough cards to war
             //if a player doesn't have enough cards, they lose
+            cardsOnTable.addAll(warCards);
+            warCards.clear();
+            goToWar(highCardHolders, new ArrayList<Player>(), cardsOnTable, warCards);
         } else {
             // give all the cards to winner and clear lists
+            cardsOnTable.addAll(warCards);
             highCardHolders.get(0).addCardsToHand(cardsOnTable);
+            warCards.clear();
             cardsOnTable.clear();
             highCardHolders.clear();
         }
@@ -68,13 +74,13 @@ public class Game {
         }
     }
 
-    public void goToWar(ArrayList<Player> winners) {
+    public void goToWar(ArrayList<Player> players, ArrayList<Player> highCardHolders,
+                        ArrayList<Card> cardsOnTable, ArrayList<Card> warCards) {
         // War Starts with each player putting 3 cards in the card pool
         for (int i = 0; i<3; i++) {
-            playCards(winners, cardsOnTable);
+            playCards(players, cardsOnTable);
         }
-        // Next each of the players
-        playCards(winners, warCards);
+        battle(players, highCardHolders, cardsOnTable, warCards);
 
     }
 
