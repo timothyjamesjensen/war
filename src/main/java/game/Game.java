@@ -54,7 +54,11 @@ public class Game {
             cardsOnTable.addAll(warCards);
             warCards.clear();
             goToWar(highCardHolders, new ArrayList<Player>(), cardsOnTable, warCards);
-            gc.roundWinnerMessage(highCardHolders.get(0), cardsOnTable.size());
+            // Check for a winner when coming out of recursive call to stop display other messages
+            if(winner) {
+                return;
+            }
+            //gc.roundWinnerMessage(highCardHolders.get(0), cardsOnTable.size());
         } else {
             // Give all the cards to winner and clear lists
             cardsOnTable.addAll(warCards);
