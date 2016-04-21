@@ -74,16 +74,16 @@ public class Game {
         }
     }
 
-    public void goToWar(ArrayList<Player> players, ArrayList<Player> highCardHolders,
+    public void goToWar(ArrayList<Player> playersList, ArrayList<Player> highCardHolders,
                         ArrayList<Card> cardsOnTable, ArrayList<Card> warCards) {
         // Players need at least 4 cards to go to war
-        checkCardCount(4);
+        removePlayersAtWar(checkCardCount(4), playersList);
         // War Starts with each player putting 3 cards in the card pool
         for (int i = 0; i<3; i++) {
-            playCards(players, cardsOnTable);
+            playCards(playersList, cardsOnTable);
         }
         // After 3 cards are added to the table, players battle
-        battle(players, highCardHolders, cardsOnTable, warCards);
+        battle(playersList, highCardHolders, cardsOnTable, warCards);
     }
 
     public void playCards(ArrayList<Player> players, ArrayList<Card> cardsOnTable) {
@@ -100,12 +100,12 @@ public class Game {
         return winner;
     }
 
-    public void checkCardCount(int cardsNeededToContinue) {
+    public ArrayList<String> checkCardCount(int cardsNeededToContinue) {
         ArrayList<String> removeList = new ArrayList<>();
         for (Player player: players) {
             // If players don't have enough cards to continue, they are out of the game
             if (player.getHand().size() < cardsNeededToContinue) {
-                System.err.println(player.playCard() + " does not have enough cards to continue. They are" +
+                System.err.println(player.getPlayerID() + " does not have enough cards to continue. They are" +
                         " out of the game and will forfeit all their cards");
                 removeList.add(player.getPlayerID());
             }
@@ -113,6 +113,7 @@ public class Game {
         for(String playerId: removeList) {
             removePlayer(playerId, players);
         }
+        return removeList;
     }
 
     public Player removePlayer(String playerID, ArrayList<Player> players) {
@@ -122,6 +123,12 @@ public class Game {
             }
         }
         return null;
+    }
+
+    public void removePlayersAtWar(ArrayList<String> playerIDs, ArrayList<Player> players) {
+        for (String playerID : playerIDs) {
+            removePlayer(playerID, players);
+        }
     }
 
     public int compareCards(ArrayList<Card> cardsToCompare) {
