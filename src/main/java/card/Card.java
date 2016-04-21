@@ -15,4 +15,8 @@ public class Card {
     public Rank getRank() {
         return rank;
     }
+
+    public String show() {
+        return rank.getName() + " of " + suit.getName();
+    }
 }

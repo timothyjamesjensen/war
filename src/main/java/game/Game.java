@@ -176,7 +176,7 @@ public class Game {
     public void showCards(ArrayList<Player> playersList) {
         System.out.println("Player Hands\n");
         for (Player player: playersList) {
-            System.out.println(player.getPlayerID() + ": card");
+            System.out.println(player.getPlayerID() + ": " + player.getLastPlayed().show());
         }
     }
 
