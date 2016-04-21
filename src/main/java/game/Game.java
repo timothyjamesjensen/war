@@ -36,7 +36,6 @@ public class Game {
     public void gameLoop() {
         // This will loop until someone becomes a winner and winner is set to true
         while (!winner) {
-            //userInput();
             battle(players, highCardHolders, cardsOnTable, warCards);
         }
     }
@@ -68,7 +67,7 @@ public class Game {
 
         // Make sure players have at least 1 card, if not they lose
         checkCardCount(1);
-        // Every time a player loses, check if there is a winner
+        // Check if there is a winner at the end of each round
         checkForWinner();
     }
 
@@ -118,13 +117,13 @@ public class Game {
         return removeList;
     }
 
-    public Player removePlayer(String playerID, ArrayList<Player> playersList) {
+    public void removePlayer(String playerID, ArrayList<Player> playersList) {
         for (int i = 0; i < playersList.size(); i++) {
             if (playerID.equals(playersList.get(i).getPlayerID())) {
-                return playersList.remove(i);
+                playersList.remove(i);
+                return;
             }
         }
-        return null;
     }
 
     public void removePlayersAtWar(ArrayList<String> playerIDs, ArrayList<Player> playersList) {
