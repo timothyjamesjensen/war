@@ -42,9 +42,9 @@ public class CardDeck implements Deck {
 
     private void populateDeck(ArrayList cards) {
         // Temporary solution. May need to change this
-        for (Suit suit : Suit.values()) {
-            for (Rank rank : Rank.values()) {
-                cards.add(new Card(suit, rank));
+        for (int i=0; i<numberOfSuits; i++) {
+            for (int j=0; j<numberOfRanks; j++) {
+                cards.add(new Card(suits[i], ranks[j]));
             }
         }
     }

@@ -41,4 +41,11 @@ public class CardDeckTest {
         assertEquals("Deck size should be one less than originalDeckSize",
                 originalDeckSize-1, cards.getDeck().size());
     }
+
+    @Test
+    public void DeckShouldHave30Cards() {
+        CardDeck cards = new CardDeck();
+        cards.create(3,10);
+        assertEquals("Deck should have a size of 30", 30, cards.getDeck().size());
+    }
 }
