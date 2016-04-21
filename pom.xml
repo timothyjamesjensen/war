@@ -4,6 +4,9 @@
   <groupId>org.apache.maven.plugins</groupId>
   <artifactId>war</artifactId>
   <version>1</version>
+  <name>Maven Quick Start Archetype</name>
+  <url>http://maven.apache.org</url>
+  <packaging>jar</packaging>
   <build>
     <plugins>
       <plugin>
@@ -13,7 +16,7 @@
           <target>1.7</target>
         </configuration>
       </plugin>
-      <plugin>
+    <plugin>
       <!-- Build an executable JAR -->
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-jar-plugin</artifactId>
@@ -30,9 +33,9 @@
     </plugin>
     </plugins>
   </build>
-  <name>Maven Quick Start Archetype</name>
-  <url>http://maven.apache.org</url>
-  <packaging>jar</packaging>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
