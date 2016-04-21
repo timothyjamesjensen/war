@@ -4,20 +4,22 @@ import card.Card;
 import deck.CardDeck;
 import deck.Deck;
 import player.Player;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Game {
     // Using a hashmap here for easy deletion of players when they lose. PlayerID is the key
-    private HashMap<String, Player> players;
+    private ArrayList<Player> players;
     private ArrayList<Card> cardsOnTable;
     private ArrayList<Card> warCards;
     private ArrayList<Player> highCardHolders;
     private boolean winner;
 
     public Game() {
-        players = new HashMap<>();
+        players = new ArrayList<>();
         cardsOnTable = new ArrayList<>();
         highCardHolders = new ArrayList<>();
         warCards = new ArrayList<>();
@@ -61,8 +63,8 @@ public class Game {
     }
 
     public void playCards() {
-        for (Map.Entry<String, Player> player : players.entrySet()) {
-            cardsOnTable.add(player.getValue().playCard());
+        for (Player player : players) {
+            cardsOnTable.add(player.playCard());
         }
     }
 
@@ -90,9 +92,9 @@ public class Game {
     }
 
     public void buildWinnersList(int highCard) {
-        for (Map.Entry<String, Player> player : players.entrySet()) {
-            if (player.getValue().getLastPlayed().getRank().getValue() == highCard) {
-                highCardHolders.add(player.getValue());
+        for (Player player : players) {
+            if (player.getLastPlayed().getRank().getValue() == highCard) {
+                highCardHolders.add(player);
             }
         }
     }
@@ -100,13 +102,13 @@ public class Game {
     public void dealCardsToPlayers(Deck cards, int playersCount) {
         // If there are 5 players, each player will get 10 cards and two will be left in the deck
         while (cards.getDeck().size() > 0  && (cards.getDeck().size() - playersCount) >= 0) {
-            for (Map.Entry<String, Player> player : players.entrySet()) {
-                player.getValue().addCardsToHand(cards.deal());
+            for (Player player : players) {
+                player.addCardsToHand(cards.deal());
             }
         }
     }
 
-    public HashMap<String, Player> getPlayers() {
+    public ArrayList<Player> getPlayers() {
         return players;
     }
 
@@ -120,8 +122,7 @@ public class Game {
 
     private void initPlayers(int playersCount) {
         for (int i=0; i<playersCount; i++) {
-            // HashMap key is same as playerID. this makes it easy to delete players
-            players.put("player" + i, new Player("player" + i));
+            players.add(new Player("player" + i));
         }
     }
 }
