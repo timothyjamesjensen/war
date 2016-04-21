@@ -83,4 +83,18 @@ public class GameTest {
         war.removePlayer("player1", war.getPlayers());
         assertEquals("players size should equal 3", 3, war.getPlayers().size());
     }
+
+    @Test
+    public void RemovePlayersAtWarShouldDecreasePlayerCountByOne() {
+        Game war = new Game();
+        war.initPlayers(4);
+        Deck cards = new CardDeck();
+        cards.create(4, 13);
+        cards.shuffle();
+        war.dealCardsToPlayers(cards, 4);
+        ArrayList<String> removeList = new ArrayList<>();
+        removeList.add("player0");
+        war.removePlayersAtWar(removeList, war.getPlayers());
+        assertEquals("players size should equal 3", 3, war.getPlayers().size());
+    }
 }
