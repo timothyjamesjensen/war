@@ -46,9 +46,9 @@ public class Game {
                        ArrayList<Card> cardsOnTable, ArrayList<Card> warCards) {
         //check if any player has zero cards, if they do, they lose and are kicked from game
         //every time a player loses, check if there is a winner, if there is, return;
-        // all players play cards
+        // All players play a single card
         playCards(players, warCards);
-        // check for high card and build list of players who have that card
+        // Check for high card and build list of players who have that card
         buildWinnersList(players, highCardHolders, compareCards(cardsOnTable));
         // build list of players who have high card
         if (highCardHolders.size() > 1) {
@@ -68,20 +68,30 @@ public class Game {
         }
     }
 
+    public void goToWar(ArrayList<Player> players, ArrayList<Player> highCardHolders,
+                        ArrayList<Card> cardsOnTable, ArrayList<Card> warCards) {
+        checkCardCount(4);
+        // War Starts with each player putting 3 cards in the card pool
+        for (int i = 0; i<3; i++) {
+            playCards(players, cardsOnTable);
+        }
+        // After 3 cards are added to the table, players battle
+        battle(players, highCardHolders, cardsOnTable, warCards);
+    }
+
     public void playCards(ArrayList<Player> players, ArrayList<Card> cardsOnTable) {
         for (Player player : players) {
             cardsOnTable.add(player.playCard());
         }
     }
 
-    public void goToWar(ArrayList<Player> players, ArrayList<Player> highCardHolders,
-                        ArrayList<Card> cardsOnTable, ArrayList<Card> warCards) {
-        // War Starts with each player putting 3 cards in the card pool
-        for (int i = 0; i<3; i++) {
-            playCards(players, cardsOnTable);
+    public void checkCardCount(int cardsNeededToContinue) {
+        for (Player player: players) {
+            if (player.getHand().size() < cardsNeededToContinue) {
+                System.err.println(player.playCard() + " does not have enough cards to continue. They are" +
+                        " out of the game and will forfeit all their cards");
+            }
         }
-        battle(players, highCardHolders, cardsOnTable, warCards);
-
     }
 
     public int compareCards(ArrayList<Card> cardsToCompare) {
