@@ -77,6 +77,7 @@ public class Game {
 
     public void goToWar(ArrayList<Player> playersList, ArrayList<Player> highCardHolders,
                         ArrayList<Card> cardsOnTable, ArrayList<Card> warCards) {
+        gc.warMessage(playersList);
         // Players need at least 4 cards to go to war
         removePlayersAtWar(checkCardCount(4), playersList);
         //Check for winner after removing players

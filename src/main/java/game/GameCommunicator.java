@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class GameCommunicator {
     private Scanner scanner;
 
-    GameCommunicator() {
+    public GameCommunicator() {
         scanner = new Scanner(System.in);
     }
 
@@ -36,5 +36,16 @@ public class GameCommunicator {
     public void loserMessage(String playerID) {
         System.out.println(playerID + " does not have enough cards to continue. They are" +
                 " out of the game and will forfeit all their cards");
+    }
+
+    public void warMessage(ArrayList<Player> playerList) {
+        for (int i = 0; i<playerList.size(); i++) {
+            if (i>0) {
+                System.out.print(" and ");
+            }
+            System.out.print(playerList.get(i).getPlayerID());
+        }
+        System.out.print(" have the same high card!!");
+        System.out.print(" ITS WAR!");
     }
 }
