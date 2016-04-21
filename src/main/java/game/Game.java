@@ -61,8 +61,11 @@ public class Game {
         } else {
             // Give all the cards to winner and clear lists
             cardsOnTable.addAll(warCards);
-            highCardHolders.get(0).addCardsToHand(cardsOnTable);
-            gc.roundWinnerMessage(highCardHolders.get(0), cardsOnTable.size());
+            // if nobody won war, there is no winner
+            if (highCardHolders.size() != 0) {
+                highCardHolders.get(0).addCardsToHand(cardsOnTable);
+                gc.roundWinnerMessage(highCardHolders.get(0), cardsOnTable.size());
+            }
         }
         warCards.clear();
         cardsOnTable.clear();
@@ -81,6 +84,9 @@ public class Game {
         removePlayersAtWar(checkCardCount(4), playersList);
         //Check for winner after removing players
         if(checkForWinner()) {
+            return;
+        }
+        if(canWarContinue(playersList) == false) {
             return;
         }
         // War Starts with each player putting 3 cards in the card pool
@@ -106,6 +112,14 @@ public class Game {
             gc.allLosers();
         }
         return winner;
+    }
+
+    public boolean canWarContinue(ArrayList<Player> warPlayers) {
+        if (warPlayers.size() == 0) {
+            gc.noWarWinnerMessage();
+            return false;
+        }
+        return true;
     }
 
     public ArrayList<String> checkCardCount(int cardsNeededToContinue) {

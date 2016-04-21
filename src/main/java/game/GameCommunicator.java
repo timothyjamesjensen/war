@@ -50,7 +50,12 @@ public class GameCommunicator {
     }
 
     public void allLosers() {
-        System.out.println("Wow! it looks like NOBODY had enough cards to continue!" +
+        System.out.println("Wow! It looks like NOBODY had enough cards to continue!" +
                 " The game is over and nobody wins");
+    }
+
+    public void noWarWinnerMessage() {
+        System.out.println("Wow! It looks like nobody has enough cards to player war. " +
+                "The round is over and nobody gets those cards");
     }
 }
