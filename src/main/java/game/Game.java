@@ -5,11 +5,7 @@ import deck.CardDeck;
 import deck.Deck;
 import player.Player;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
 
 public class Game {
     private ArrayList<Player> players;
@@ -47,12 +43,7 @@ public class Game {
 
     public void battle(ArrayList<Player> players, ArrayList<Player> highCardHolders,
                        ArrayList<Card> cardsOnTable, ArrayList<Card> warCards) {
-        // Make sure players have at least 1 card, if not they lose
-        checkCardCount(1);
-        // Every time a player loses, check if there is a winner, if there is, return;
-        if (weHaveAWinner()) {
-            return;
-        }
+
         gc.userInput();
         // All players play a single card
         playCards(players, warCards);
@@ -74,6 +65,11 @@ public class Game {
         warCards.clear();
         cardsOnTable.clear();
         highCardHolders.clear();
+
+        // Make sure players have at least 1 card, if not they lose
+        checkCardCount(1);
+        // Every time a player loses, check if there is a winner
+        checkForWinner();
     }
 
     public void goToWar(ArrayList<Player> playersList, ArrayList<Player> highCardHolders,
@@ -82,7 +78,7 @@ public class Game {
         // Players need at least 4 cards to go to war
         removePlayersAtWar(checkCardCount(4), playersList);
         //Check for winner after removing players
-        if(weHaveAWinner()) {
+        if(checkForWinner()) {
             return;
         }
         // War Starts with each player putting 3 cards in the card pool
@@ -99,7 +95,7 @@ public class Game {
         }
     }
 
-    public boolean weHaveAWinner() {
+    public boolean checkForWinner() {
         if (players.size() == 1) {
             winner = true;
             gc.winnerMessage();
