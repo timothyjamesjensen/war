@@ -11,7 +11,8 @@ public class War {
     }
 
     public static void play( int numberOfSuits, int numberOfRanks, int numberOfPlayers ){
-        System.out.println("Alright! Its a " + numberOfPlayers + " player game of War!\n\n");
+        System.out.println("Alright! Its a " + numberOfPlayers + " player game of War with a " +
+                (numberOfRanks * numberOfSuits) + " card deck!\n\n");
 
         Game war = new Game();
         war.play(numberOfSuits, numberOfRanks, numberOfPlayers);
