@@ -17,6 +17,6 @@ public class Card {
     }
 
     public String show() {
-        return rank.getName() + " of " + suit.getIcon();
+        return rank.getName() + " of " + suit.getName();
     }
 }
