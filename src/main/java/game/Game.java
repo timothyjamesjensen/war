@@ -68,16 +68,20 @@ public class Game {
             // Give all the cards to winner and clear lists
             cardsOnTable.addAll(warCards);
             highCardHolders.get(0).addCardsToHand(cardsOnTable);
-            warCards.clear();
-            cardsOnTable.clear();
-            highCardHolders.clear();
         }
+        warCards.clear();
+        cardsOnTable.clear();
+        highCardHolders.clear();
     }
 
     public void goToWar(ArrayList<Player> playersList, ArrayList<Player> highCardHolders,
                         ArrayList<Card> cardsOnTable, ArrayList<Card> warCards) {
         // Players need at least 4 cards to go to war
         removePlayersAtWar(checkCardCount(4), playersList);
+        //Check for winner after removing players
+        if(weHaveAWinner()) {
+            return;
+        }
         // War Starts with each player putting 3 cards in the card pool
         for (int i = 0; i<3; i++) {
             playCards(playersList, cardsOnTable);
@@ -116,17 +120,18 @@ public class Game {
         return removeList;
     }
 
-    public Player removePlayer(String playerID, ArrayList<Player> players) {
-        for (int i = 0; i < players.size(); i++) {
-            if (playerID.equals(players.get(i).getPlayerID())) {
-                return players.remove(i);
+    public Player removePlayer(String playerID, ArrayList<Player> playersList) {
+        for (int i = 0; i < playersList.size(); i++) {
+            if (playerID.equals(playersList.get(i).getPlayerID())) {
+                return playersList.remove(i);
             }
         }
         return null;
     }
 
-    public void removePlayersAtWar(ArrayList<String> playerIDs, ArrayList<Player> players) {
+    public void removePlayersAtWar(ArrayList<String> playerIDs, ArrayList<Player> playersList) {
         for (String playerID : playerIDs) {
+            removePlayer(playerID, playersList);
             removePlayer(playerID, players);
         }
     }
