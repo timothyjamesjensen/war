@@ -109,7 +109,7 @@ public class Game {
         for (Player player: players) {
             // If players don't have enough cards to continue, they are out of the game
             if (player.getHand().size() < cardsNeededToContinue) {
-                System.err.println(player.getPlayerID() + " does not have enough cards to continue. They are" +
+                System.out.println(player.getPlayerID() + " does not have enough cards to continue. They are" +
                         " out of the game and will forfeit all their cards");
                 removeList.add(player.getPlayerID());
             }
@@ -171,6 +171,13 @@ public class Game {
     public void userInput() {
         System.out.println("Do you want to keep playing? Press enter!");
         scanner.nextLine();
+    }
+
+    public void showCards(ArrayList<Player> playersList) {
+        System.out.println("Player Hands\n");
+        for (Player player: playersList) {
+            System.out.println(player.getPlayerID() + ": card");
+        }
     }
 
     public ArrayList<Player> getPlayers() {
