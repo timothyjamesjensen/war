@@ -9,6 +9,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Game {
     // Using a hashmap here for easy deletion of players when they lose. PlayerID is the key
@@ -17,13 +18,15 @@ public class Game {
     private ArrayList<Card> warCards;
     private ArrayList<Player> highCardHolders;
     private boolean winner;
+    private Scanner scanner;
 
     public Game() {
         players = new ArrayList<>();
         cardsOnTable = new ArrayList<>();
         highCardHolders = new ArrayList<>();
         warCards = new ArrayList<>();
-        this.winner = false;
+        winner = false;
+        scanner = new Scanner(System.in);
     }
 
     public void play(int numberOfSuits, int numberOfRanks, int playersCount) {
@@ -32,12 +35,13 @@ public class Game {
         cards.create(numberOfSuits, numberOfRanks);
         cards.shuffle();
         dealCardsToPlayers(cards, playersCount);
-        //gameLoop();
+        gameLoop();
     }
 
     public void gameLoop() {
         // This will loop until someone becomes a winner and winner is set to true
         while (!winner) {
+            userInput();
             battle(players, highCardHolders, cardsOnTable, warCards);
         }
     }
@@ -53,7 +57,7 @@ public class Game {
         // All players play a single card
         playCards(players, warCards);
         // Check for high card and build list of players who have that card
-        buildWinnersList(players, highCardHolders, compareCards(cardsOnTable));
+        buildWinnersList(players, highCardHolders, compareCards(warCards));
         // If multiple card holders exist, go to war
         if (highCardHolders.size() > 1) {
             cardsOnTable.addAll(warCards);
@@ -140,6 +144,16 @@ public class Game {
                 player.addCardsToHand(cards.deal());
             }
         }
+    }
+
+    public boolean keepPlaying() {
+        System.out.println("Do you want to keep playing? Press enter!");
+        return true;
+    }
+
+    public void userInput() {
+        System.out.println("Do you want to keep playing? Press enter!");
+        scanner.nextLine();
     }
 
     public ArrayList<Player> getPlayers() {
