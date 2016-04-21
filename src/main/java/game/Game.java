@@ -44,8 +44,12 @@ public class Game {
 
     public void battle(ArrayList<Player> players, ArrayList<Player> highCardHolders,
                        ArrayList<Card> cardsOnTable, ArrayList<Card> warCards) {
-        //check if any player has zero cards, if they do, they lose and are kicked from game
+        // Make sure players have at least 1 card, if not they lose
+        checkCardCount(1);
         //every time a player loses, check if there is a winner, if there is, return;
+        if (weHaveAWinner()) {
+            return;
+        }
         // All players play a single card
         playCards(players, warCards);
         // Check for high card and build list of players who have that card
@@ -70,6 +74,7 @@ public class Game {
 
     public void goToWar(ArrayList<Player> players, ArrayList<Player> highCardHolders,
                         ArrayList<Card> cardsOnTable, ArrayList<Card> warCards) {
+        // Players need at least 4 cards to go to war
         checkCardCount(4);
         // War Starts with each player putting 3 cards in the card pool
         for (int i = 0; i<3; i++) {
@@ -83,6 +88,14 @@ public class Game {
         for (Player player : players) {
             cardsOnTable.add(player.playCard());
         }
+    }
+
+    public boolean weHaveAWinner() {
+        if (players.size() == 1) {
+            winner = true;
+            System.out.println("We have a winner!!");
+        }
+        return winner;
     }
 
     public void checkCardCount(int cardsNeededToContinue) {
