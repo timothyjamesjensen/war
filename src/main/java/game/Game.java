@@ -97,7 +97,7 @@ public class Game {
     public boolean checkForWinner() {
         if (players.size() == 1) {
             winner = true;
-            gc.winnerMessage();
+            gc.winnerMessage(players);
         }
         return winner;
     }

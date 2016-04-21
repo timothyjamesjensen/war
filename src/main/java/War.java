@@ -12,7 +12,8 @@ public class War {
 
     public static void play( int numberOfSuits, int numberOfRanks, int numberOfPlayers ){
         System.out.println("Alright! Its a " + numberOfPlayers + " player game of War with a " +
-                (numberOfRanks * numberOfSuits) + " card deck!\n\n");
+                (numberOfRanks * numberOfSuits) + " card deck!\n\n" +
+                "Oh! Your player id is player0!\n\n");
 
         // This is where the game starts
         Game war = new Game();

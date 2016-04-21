@@ -24,13 +24,14 @@ public class GameCommunicator {
         System.out.print("\n");
     }
 
-    public void winnerMessage() {
-        System.out.println("We Have a winner!!");
+    public void winnerMessage(ArrayList<Player> winner) {
+        System.out.println("We Have a winner!!\n" +
+                winner.get(0).getPlayerID() + " has won the game!!");
     }
 
     public void loserMessage(String playerID) {
         System.out.println(playerID + " does not have enough cards to continue. They are" +
-                " out of the game and will forfeit all their cards");
+                " out of the game and will forfeit all their cards\n");
     }
 
     public void warMessage(ArrayList<Player> playerList) {
