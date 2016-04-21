@@ -175,7 +175,13 @@ public class Game {
 
     public void initPlayers(int playersCount) {
         for (int i=0; i<playersCount; i++) {
-            players.add(new Player("player" + i));
+            if (i==0) {
+                players.add(new Player("you    "));
+            }
+            else {
+                players.add(new Player("player" + i));
+            }
+
         }
     }
 }
