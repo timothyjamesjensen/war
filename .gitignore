@@ -7,3 +7,4 @@ target/generated*
 target/maven*
 target/surefire*
 target/test*
+war.iml

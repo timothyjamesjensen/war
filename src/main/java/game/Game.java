@@ -12,6 +12,7 @@ public class Game {
     // Using a hashmap here for easy deletion of players when they lose. PlayerID is the key
     private HashMap<String, Player> players;
     private ArrayList<Card> cardsOnTable;
+    private ArrayList<Card> warCards;
     private ArrayList<Player> highCardHolders;
     private boolean winner;
 
@@ -19,6 +20,7 @@ public class Game {
         players = new HashMap<>();
         cardsOnTable = new ArrayList<>();
         highCardHolders = new ArrayList<>();
+        warCards = new ArrayList<>();
         this.winner = false;
     }
 
@@ -64,6 +66,19 @@ public class Game {
         }
     }
 
+    public void goToWar(ArrayList<Player> highCardHolders) {
+        // War Starts with each player putting down 3 cards
+        for (int i = 0; i<3; i++) {
+            for (Player player : highCardHolders) {
+                cardsOnTable.add(player.playCard());
+            }
+        }
+        for (Player player : highCardHolders) {
+            warCards.add(player.playCard());
+        }
+
+    }
+
     public int compareCards(ArrayList<Card> cardsToCompare) {
         int highestValue = 0;
         for (Card card : cardsToCompare) {
@@ -100,12 +115,12 @@ public class Game {
     }
 
     public ArrayList<Player> getHighCardHolders() {
-        return  highCardHolders;
+        return highCardHolders;
     }
 
     private void initPlayers(int playersCount) {
         for (int i=0; i<playersCount; i++) {
-            // NOTE: hashmap key is same as playerID. this makes it easy to delete players
+            // HashMap key is same as playerID. this makes it easy to delete players
             players.put("player" + i, new Player("player" + i));
         }
     }
