@@ -2,3 +2,8 @@
 out/
 build/
 .gradle/
+target/classes/
+target/generated*
+target/maven*
+target/surefire*
+target/test*
