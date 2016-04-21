@@ -18,7 +18,7 @@ public class Game {
     private ArrayList<Card> warCards;
     private ArrayList<Player> highCardHolders;
     private boolean winner;
-    private Scanner scanner;
+    private GameCommunicator gc;
 
     public Game() {
         players = new ArrayList<>();
@@ -26,7 +26,7 @@ public class Game {
         highCardHolders = new ArrayList<>();
         warCards = new ArrayList<>();
         winner = false;
-        scanner = new Scanner(System.in);
+        gc = new GameCommunicator();
     }
 
     public void play(int numberOfSuits, int numberOfRanks, int playersCount) {
@@ -54,10 +54,10 @@ public class Game {
         if (weHaveAWinner()) {
             return;
         }
-        userInput();
+        gc.userInput();
         // All players play a single card
         playCards(players, warCards);
-        showCards(players);
+        gc.showCards(players);
         // Check for high card and build list of players who have that card
         buildWinnersList(players, highCardHolders, compareCards(warCards));
         // If multiple card holders exist, go to war
@@ -163,24 +163,6 @@ public class Game {
                 player.addCardsToHand(cards.deal());
             }
         }
-    }
-
-    public boolean keepPlaying() {
-        System.out.println("Do you want to keep playing? Press enter!");
-        return true;
-    }
-
-    public void userInput() {
-        System.out.println("Do you want to keep playing? Press enter!");
-        scanner.nextLine();
-    }
-
-    public void showCards(ArrayList<Player> playersList) {
-        System.out.println("Played Cards\n");
-        for (Player player: playersList) {
-            System.out.println(player.getPlayerID() + ": " + player.getLastPlayed().show() + "");
-        }
-        System.out.print("\n");
     }
 
     public ArrayList<Player> getPlayers() {
