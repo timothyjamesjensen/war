@@ -50,6 +50,6 @@ public class GameCommunicator {
     }
 
     public void roundWinnerMessage(Player winner, int cardsWon) {
-        System.out.print(winner.getPlayerID() + " has won the round and gets " + cardsWon + " cards!!\n\n");
+        System.out.print(winner.getPlayerID() + " won the round and got " + cardsWon + " cards!!\n\n");
     }
 }
