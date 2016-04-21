@@ -150,7 +150,7 @@ public class Game {
         return cardsOnTable;
     }
 
-    private void initPlayers(int playersCount) {
+    public void initPlayers(int playersCount) {
         for (int i=0; i<playersCount; i++) {
             players.add(new Player("player" + i));
         }
