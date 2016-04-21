@@ -46,9 +46,9 @@ public class Game {
         //check if any player has zero cards, if they do, they lose and are kicked from game
         //every time a player loses, check if there is a winner, if there is, return;
         // all players play cards
-        playCards();
+        playCards(players, cardsOnTable);
         // check for high card and build list of players who have that card
-        buildWinnersList(compareCards(cardsOnTable));
+        buildWinnersList(players, highCardHolders, compareCards(cardsOnTable));
         // build list of players who have high card
         if (highCardHolders.size() > 1) {
             //goToWar
@@ -62,13 +62,13 @@ public class Game {
         }
     }
 
-    public void playCards() {
+    public void playCards(ArrayList<Player> players, ArrayList<Card> cardsOnTable) {
         for (Player player : players) {
             cardsOnTable.add(player.playCard());
         }
     }
 
-    public void goToWar(ArrayList<Player> highCardHolders) {
+    public void goToWar(ArrayList<Player> winners) {
         // War Starts with each player putting down 3 cards
         for (int i = 0; i<3; i++) {
             for (Player player : highCardHolders) {
@@ -91,10 +91,10 @@ public class Game {
         return highestValue;
     }
 
-    public void buildWinnersList(int highCard) {
+    public void buildWinnersList(ArrayList<Player> players, ArrayList<Player> winners, int highCard) {
         for (Player player : players) {
             if (player.getLastPlayed().getRank().getValue() == highCard) {
-                highCardHolders.add(player);
+                winners.add(player);
             }
         }
     }

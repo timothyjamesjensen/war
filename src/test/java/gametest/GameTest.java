@@ -35,7 +35,7 @@ public class GameTest {
     public void PlayCardsShouldPopulateCardsOnTable() {
         Game war = new Game();
         war.play(4, 13, 4);
-        war.playCards();
+        war.playCards(war.getPlayers(), war.getCardsOnTable());
         assertEquals("Cards on table should equal 4", 4, war.getCardsOnTable().size());
     }
 
