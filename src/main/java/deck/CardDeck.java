@@ -36,7 +36,6 @@ public class CardDeck implements Deck {
         return cards.remove(0);
     }
 
-    // This getter is for testing purposes only
     public ArrayList<Card> getDeck() {
         return cards;
     }
